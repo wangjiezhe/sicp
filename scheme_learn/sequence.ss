@@ -1,6 +1,6 @@
 ;;; Sequence
 
-(load "lazy.scm")
+(load "lazy.ss")
 
 ;;; infinite sequence represented by a_(n+1) = f(a_n)
 (define (inf-seq a0 f)

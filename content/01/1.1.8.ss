@@ -1,4 +1,4 @@
-(load "1.1.4.scm")                      ; square
+(load "1.1.4.ss")                      ; square
 
 (define (sqrt x)
 
