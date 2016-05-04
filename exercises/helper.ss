@@ -10,3 +10,12 @@
 
 (define (build x y)
   (cons x (cons y '())))
+
+(define (average x y)
+  (/ (+ x y) 2))
+
+(define (square x) (* x x))
+
+(define (cube x) (* x x x))
+
+(define tolerance 0.000001)
