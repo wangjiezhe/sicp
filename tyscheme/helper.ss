@@ -1,0 +1,5 @@
+(define (print . vs)
+  (for-each (lambda (x)
+              (display x)
+              (newline))
+            vs))
