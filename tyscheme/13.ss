@@ -1,24 +1,33 @@
+(load "helper.ss")
+
 ;;; Jumps
-(+ 1 (call/cc
-      (lambda (k)
-        (* 2 (k 3)))))
+
+;;; `call-with-current-continuaion`
+(print (+ 1 (call/cc
+             (lambda (k)
+               (* 2 (k 3))))))
 
 (define r #f)
-(+ 1 (call/cc
-      (lambda (k)
-        (set! r k)
-        (+ 2 (k 3)))))
+(print (+ 1 (call/cc
+             (lambda (k)
+               (set! r k)
+               (+ 2 (k 3))))))
 
 (r 5)
 (+ 3 (r 5))
+(newline)
 
 
+;;; Escaping continuation
 (define list-product
   (lambda (s)
     (let recur ([s s])
       (if (null? s)
           1
           (* (car s) (recur (cdr s)))))))
+
+(print (list-product '(1 2 3 4 5)))
+(print (list-product '(0 1 2 3 4)))
 
 (define list-product
   (lambda (s)
@@ -30,7 +39,12 @@
                  (exit 0)
                  (* (car s) (recur (cdr s))))))))))
 
+(print (list-product '(1 2 3 4 5)))
+(print (list-product '(0 1 2 3 4)))
+(newline)
 
+
+;;; Tree matching
 (define flatten
   (lambda (tree)
     (cond [(null? tree) '()]
@@ -50,6 +64,9 @@
             [(eqv? (car ftree1) (car ftree2))
              (loop (cdr ftree1) (cdr ftree2))]
             [else #f]))))
+
+(print (same-fringe? '(1 (2 3)) '((1 2) 3)))
+(print (same-fringe? '(1 (2 3)) '((1 3) 2)))
 
 (define tree->generator
   (lambda (tree)
@@ -85,3 +102,25 @@
           (if (eqv? leaf1 leaf2)
               (if (null? leaf1) #t (loop))
               #f))))))
+
+(print (same-fringe? '(1 (2 3)) '((1 2) 3)))
+(print (same-fringe? '(1 (2 3)) '((1 3) 2)))
+(newline)
+
+
+;;; Coroutines
+(define-syntax coroutine
+  (syntax-rules ()
+    [(_ x body ...)
+     (lambda (x)
+       (letrec ([+local-control-state
+                 (lambda (x)
+                   body ...)]
+                [resume
+                 (lambda (c v)
+                   (call/cc
+                    (lambda (k)
+                      (set! +local-control-state k)
+                      (c v))))])
+         (lambda (v)
+           (+local-control-state v))))]))
