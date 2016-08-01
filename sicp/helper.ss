@@ -2,7 +2,7 @@
   (and (not (pair? x))
        (not (null? x))))
 
-(define (display-all . vs)
+(define (print . vs)
   (for-each (lambda (x)
               (display x)
               (newline))
@@ -19,3 +19,6 @@
 (define (cube x) (* x x x))
 
 (define tolerance 0.000001)
+
+(define (inc x)
+  (+ x 1))

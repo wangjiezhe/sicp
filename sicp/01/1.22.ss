@@ -1,4 +1,4 @@
-(load "../../content/01/1.2.6.ss")
+(load "1.2.6.ss")
 
 (define (runtime)
   (get-time (current-time)))

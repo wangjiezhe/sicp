@@ -1,4 +1,4 @@
-(load "../../content/01/1.3.1.ss")
+(load "1.3.1.ss")
 
 (define (simpson-integral f a b n)
 

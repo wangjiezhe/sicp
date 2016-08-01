@@ -9,9 +9,9 @@
     (let ([next (f guess)])
       (cond
        [(close-enough? guess next)
-        (display-all guess next)]
+        (print guess next)]
        [else
-        (display-all guess)
+        (print guess)
         (try next)])))
 
   (try first-guess))

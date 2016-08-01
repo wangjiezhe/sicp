@@ -1,4 +1,4 @@
-(load "../../content/01/1.2.6.ss")
+(load "1.2.6.ss")
 
 (define (fermat-test? n)
   (fermat-test-iter? n 0))
