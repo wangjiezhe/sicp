@@ -24,3 +24,15 @@
                  (+ (d k) res)))))
 
   (iter k 0))
+
+(define (close-enough? v1 v2)
+  (< (abs (- v1 v2)) 0.0001))
+
+(define phi-inverse
+  (/ (- (sqrt 5) 1) 2))
+
+(let loop ([k 1])
+  (if (close-enough? (inverse-phi k) phi-inverse)
+      (print k)
+      (loop (+ k 1))))
+;;; => 10
