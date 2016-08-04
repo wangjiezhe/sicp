@@ -1,0 +1,23 @@
+(define (mul-interval x y)
+  (let ([a (lower-bound x)]
+        [b (upper-bound x)]
+        [c (lower-bound y)]
+        [d (upper-bound y)])
+    (if (>= d 0)
+        (if (>= c 0)
+            (if (>= b 0)
+                (if (>= a 0)
+                    (make-interval (* a c) (* b d))
+                    (make-interval (* a d) (* b d)))
+                (make-interval (* b d) (* a c)))
+            (if (>= b 0)
+                (if (>= a 0)
+                    (make-interval (* b c) (* b d))
+                    (make-interval (min (* a d) (* b c))
+                                   (max (* a c) (* b d))))
+                (make-interval (* a d) (* a c))))
+        (if (>= b 0)
+            (if (>= a 0)
+                (make-interval (* b c) (* a d))
+                (make-interval (* b c) (* a c)))
+            (make-interval (* b d) (* a c))))))
