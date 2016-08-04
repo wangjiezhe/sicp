@@ -1,4 +1,4 @@
-(load "../helper.ss")                   ; square, print
+(load "../helper.ss")
 (load "2.2.ss")                         ; point & segment system
 
 (define (length l)

@@ -1,4 +1,4 @@
-(load "../helper.ss")                   ; print
+(load "../helper.ss")
 (load "2.1.4.ss")
 (load "2.7.ss")                         ; make-interval
 (load "2.12.ss")                        ; make-interval-percent
