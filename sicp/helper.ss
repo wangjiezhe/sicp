@@ -22,3 +22,5 @@
 
 (define (inc x)
   (+ x 1))
+
+(define nil '())

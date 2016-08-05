@@ -1,0 +1,15 @@
+(define (unique-3-pairs n)
+  (flatmap (lambda (i)
+             (flatmap (lambda (j)
+                        (map (lambda (k) (list i j k))
+                             (enumerate-interval 1 (- j 1))))
+                      (enumerate-interval 1 (- i 1))))
+           (enumerate-interval 1 n)))
+
+(define  (fix-sum-3-pairs n s)
+  (filter (lambda (x)
+            (= (accumulate + 0 x) s))
+          (unique-3-pairs n)))
+
+(print (fix-sum-3-pairs 6 10))
+;;; => ((5 3 2) (5 4 1) (6 3 1))
