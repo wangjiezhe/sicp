@@ -20,3 +20,6 @@
   (+ x 1))
 
 (define nil '())
+
+(define false #f)
+(define true #t)
