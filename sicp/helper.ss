@@ -1,7 +1,3 @@
-(define (atom? x)
-  (and (not (pair? x))
-       (not (null? x))))
-
 (define (print . vs)
   (for-each (lambda (x)
               (display x)
