@@ -1,0 +1,15 @@
+(define (generate-pairs n)
+  (if (= n 0)
+      '()
+      (cons (list n (expt 2 (- n 1)))
+            (generate-pairs (- n 1)))))
+
+(define (generate-pairs n)
+  (if (= n 0)
+      '()
+      `(,@(generate-pairs (- n 1)) (,n ,(expt 2 (- n 1))))))
+
+(print (generate-huffman-tree (generate-pairs 5)))
+;;; => (((((leaf 1 1) (leaf 2 2) (1 2) 3) (leaf 3 4) (1 2 3) 7) (leaf 4 8) (1 2 3 4) 15) (leaf 5 16) (1 2 3 4 5) 31)
+(print (generate-huffman-tree (generate-pairs 10)))
+;;; => ((((((((((leaf 1 1) (leaf 2 2) (1 2) 3) (leaf 3 4) (1 2 3) 7) (leaf 4 8) (1 2 3 4) 15) (leaf 5 16) (1 2 3 4 5) 31) (leaf 6 32) (1 2 3 4 5 6) 63) (leaf 7 64) (1 2 3 4 5 6 7) 127) (leaf 8 128) (1 2 3 4 5 6 7 8) 255) (leaf 9 256) (1 2 3 4 5 6 7 8 9) 511) (leaf 10 512) (1 2 3 4 5 6 7 8 9 10) 1023)
